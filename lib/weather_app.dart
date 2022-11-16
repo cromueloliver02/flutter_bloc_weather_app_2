@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'pages/pages.dart';
+import './utils/routes_handler.dart';
 
 class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
+  WeatherApp({super.key});
+
+  final _routesHandler = RoutesHandler();
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,8 @@ class WeatherApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: const HomePage(),
+      initialRoute: HomePage.id,
+      routes: _routesHandler.routes,
     );
   }
 }

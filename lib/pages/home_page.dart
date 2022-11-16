@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import './pages.dart';
 
 class HomePage extends StatelessWidget {
+  static const id = '/';
+
   const HomePage({super.key});
+
+  void _goToSearchPage(BuildContext ctx) => Navigator.pushNamed(
+        ctx,
+        SearchPage.id,
+      );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Weather You'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _goToSearchPage(context),
             iconSize: 30,
             icon: const Icon(Icons.search),
           ),
