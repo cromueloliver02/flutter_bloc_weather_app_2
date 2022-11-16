@@ -9,9 +9,9 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bloc Weather App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
       home: const HomePage(),
     );
   }
