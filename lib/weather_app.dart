@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'pages/pages.dart';
+
 class WeatherApp extends StatelessWidget {
   const WeatherApp({super.key});
 
@@ -12,14 +14,5 @@ class WeatherApp extends StatelessWidget {
       ),
       home: const HomePage(),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
