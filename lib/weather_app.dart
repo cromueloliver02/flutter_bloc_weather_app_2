@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/blocs.dart';
 import 'pages/pages.dart';
-import '../utils/blocs_handler.dart';
+import './utils/blocs_handler.dart';
 import './utils/routes_handler.dart';
 
 class WeatherApp extends StatelessWidget {
@@ -17,13 +18,17 @@ class WeatherApp extends StatelessWidget {
       providers: _blocsHandler.repositoryProviders,
       child: MultiBlocProvider(
         providers: _blocsHandler.blocProviders,
-        child: MaterialApp(
-          title: 'Bloc Weather App',
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.dark,
-          initialRoute: HomePage.id,
-          routes: _routesHandler.routes,
+        child: BlocSelector<ThemeBloc, ThemeState, AppTheme>(
+          selector: (state) => state.appTheme,
+          builder: (ctx, appTheme) => MaterialApp(
+            title: 'Bloc Weather App',
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            themeMode:
+                appTheme == AppTheme.light ? ThemeMode.light : ThemeMode.dark,
+            initialRoute: HomePage.id,
+            routes: _routesHandler.routes,
+          ),
         ),
       ),
     );

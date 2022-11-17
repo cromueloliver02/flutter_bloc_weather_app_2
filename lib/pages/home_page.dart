@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recase/recase.dart';
-import '../blocs/bloc/weather_bloc.dart';
+import '../blocs/blocs.dart';
 import '../models/weather.dart';
 import '../utils/constants.dart';
 import '../utils/functions.dart';
