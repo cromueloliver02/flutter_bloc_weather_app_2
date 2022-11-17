@@ -11,6 +11,11 @@ class HomePage extends StatelessWidget {
         SearchPage.id,
       );
 
+  void _goToSettingsPage(BuildContext ctx) => Navigator.pushNamed(
+        ctx,
+        SettingsPage.id,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +28,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => _goToSettingsPage(context),
             iconSize: 30,
             icon: const Icon(Icons.settings),
           ),
