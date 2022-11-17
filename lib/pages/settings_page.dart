@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/blocs.dart';
 
 class SettingsPage extends StatelessWidget {
   static const id = '/settings';
@@ -17,9 +19,13 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             title: const Text('Temperature Unit'),
             subtitle: const Text('Celcius/Fahrenheit (Default: Celcius)'),
-            trailing: Switch(
-              value: true,
-              onChanged: (value) {},
+            trailing: BlocSelector<SettingBloc, SettingState, TempUnit>(
+              selector: (state) => state.tempUnit,
+              builder: (ctx, tempUnit) => Switch(
+                value: tempUnit == TempUnit.celcius,
+                onChanged: (value) =>
+                    ctx.read<SettingBloc>().add(ToggleTempUnitEvent()),
+              ),
             ),
           )
         ],

@@ -24,5 +24,8 @@ class BlocsHandler {
         weatherBloc: ctx.read<WeatherBloc>(),
       ),
     ),
+    BlocProvider<SettingBloc>(
+      create: (ctx) => SettingBloc(),
+    ),
   ];
 }

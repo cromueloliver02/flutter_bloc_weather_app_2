@@ -26,9 +26,12 @@ class HomePage extends StatelessWidget {
         SettingsPage.id,
       );
 
-  String _formatTemp(double temp) {
-    return '$temp °C';
-    // return '${(temp * 9 / 5) + 32} °F';
+  String _formatTemp(BuildContext ctx, double temp) {
+    final tempUnit = ctx.watch<SettingBloc>().state.tempUnit;
+
+    if (tempUnit == TempUnit.celcius) return '$temp °C';
+
+    return '${(temp * 9 / 5) + 32} °F';
   }
 
   Widget _showIcon(String icon) => FadeInImage.assetNetwork(
@@ -123,7 +126,7 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          _formatTemp(weather.temp),
+                          _formatTemp(context, weather.temp),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 28,
@@ -134,7 +137,7 @@ class HomePage extends StatelessWidget {
                         Column(
                           children: [
                             Text(
-                              _formatTemp(weather.tempMax),
+                              _formatTemp(context, weather.tempMax),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 18,
@@ -143,7 +146,7 @@ class HomePage extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              _formatTemp(weather.tempMin),
+                              _formatTemp(context, weather.tempMin),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 18,
