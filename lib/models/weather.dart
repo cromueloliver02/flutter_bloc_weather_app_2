@@ -77,21 +77,6 @@ class Weather extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'city': city});
-    result.addAll({'description': description});
-    result.addAll({'country': country});
-    result.addAll({'icon': icon});
-    result.addAll({'temp': temp});
-    result.addAll({'tempMin': tempMin});
-    result.addAll({'tempMax': tempMax});
-    result.addAll({'lastUpdated': lastUpdated.millisecondsSinceEpoch});
-
-    return result;
-  }
-
   factory Weather.fromJson(String json) {
     final Map<String, dynamic> map = jsonDecode(json);
     final weather = map['weather'][0];

@@ -27,7 +27,7 @@ class DirectGeocoding extends Equatable {
     final map = jsonDecode(json)[0];
 
     return DirectGeocoding(
-      city: map['city'] ?? '',
+      city: map['name'] ?? '',
       country: map['country'] ?? '',
       lon: map['lon']?.toDouble() ?? 0.0,
       lat: map['lat']?.toDouble() ?? 0.0,
