@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
 
     if (tempUnit == TempUnit.celcius) return '$temp °C';
 
-    return '${(temp * 9 / 5) + 32} °F';
+    return '${((temp * 9 / 5) + 32).toStringAsFixed(2)} °F';
   }
 
   Widget _showIcon(String icon) => FadeInImage.assetNetwork(
