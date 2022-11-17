@@ -13,7 +13,7 @@ class WeatherApiService {
 
   WeatherApiService({required this.httpClient});
 
-  Future<String> fetchDirectGeocoding(String city) async {
+  Future<String> getDirectGeocoding(String city) async {
     final uri = Uri(
       scheme: 'https',
       host: kApiHost,

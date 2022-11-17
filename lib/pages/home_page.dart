@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/bloc/weather_bloc.dart';
 import './pages.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,9 +9,12 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   void _goToSearchPage(BuildContext ctx) async {
-    final city = await Navigator.pushNamed(ctx, SearchPage.id);
+    final weatherBloc = ctx.read<WeatherBloc>();
+    final city = await Navigator.pushNamed(ctx, SearchPage.id) as String?;
 
-    print('city  $city'); // TODO: fetch weather
+    if (city != null) {
+      weatherBloc.add(FetchWeatherEvent(city: city));
+    }
   }
 
   void _goToSettingsPage(BuildContext ctx) => Navigator.pushNamed(

@@ -12,7 +12,7 @@ class WeatherRepository {
   Future<Weather> fetchWeather(String city) async {
     try {
       final directGeocodingJson =
-          await weatherApiService.fetchDirectGeocoding(city);
+          await weatherApiService.getDirectGeocoding(city);
       final DirectGeocoding directGeocoding =
           DirectGeocoding.fromJson(directGeocodingJson);
 

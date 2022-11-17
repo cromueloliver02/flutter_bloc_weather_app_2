@@ -1,16 +1,44 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/weather.dart';
 import '../../models/custom_error.dart';
+import '../../models/weather.dart';
+import '../../repositories/weather_repository.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  WeatherBloc() : super(WeatherState.initial()) {
+  final WeatherRepository weatherRepository;
+
+  WeatherBloc({
+    required this.weatherRepository,
+  }) : super(WeatherState.initial()) {
     on<FetchWeatherEvent>(_fetchWeather);
   }
 
-  void _fetchWeather(FetchWeatherEvent event, Emitter<WeatherState> emit) {}
+  void _fetchWeather(
+    FetchWeatherEvent event,
+    Emitter<WeatherState> emit,
+  ) async {
+    emit(state.copyWith(status: WeatherStatus.loading));
+
+    try {
+      final Weather weather = await weatherRepository.fetchWeather(event.city);
+
+      emit(state.copyWith(
+        status: WeatherStatus.loaded,
+        weather: weather,
+      ));
+
+      if (kDebugMode) print('weather $weather');
+    } on CustomError catch (err) {
+      emit(state.copyWith(
+        status: WeatherStatus.error,
+        error: err,
+      ));
+      if (kDebugMode) print(err.message);
+    }
+  }
 }
