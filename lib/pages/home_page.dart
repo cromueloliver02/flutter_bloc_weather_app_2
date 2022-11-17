@@ -6,10 +6,11 @@ class HomePage extends StatelessWidget {
 
   const HomePage({super.key});
 
-  void _goToSearchPage(BuildContext ctx) => Navigator.pushNamed(
-        ctx,
-        SearchPage.id,
-      );
+  void _goToSearchPage(BuildContext ctx) async {
+    final city = await Navigator.pushNamed(ctx, SearchPage.id);
+
+    print('city  $city'); // TODO: fetch weather
+  }
 
   void _goToSettingsPage(BuildContext ctx) => Navigator.pushNamed(
         ctx,
