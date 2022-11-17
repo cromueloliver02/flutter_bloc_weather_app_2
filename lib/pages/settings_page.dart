@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
           const SizedBox(height: 10),
           ListTile(
             title: const Text('Temperature Unit'),
-            subtitle: const Text('Temperature Unit'),
+            subtitle: const Text('Celcius/Fahrenheit (Default: Celcius)'),
             trailing: Switch(
               value: true,
               onChanged: (value) {},
